@@ -1,5 +1,5 @@
 // Codigo inicial 
-interface Product {
+export interface Product {
     description: string;
     price: number;
 }
@@ -21,7 +21,7 @@ const tablet: Product = {
 
 // function taxCalculation(options: taxCalculationOption){
 // function taxCalculation({ tax, products }: TaxCalculationOptions): [number, number]{
-function taxCalculation(options: TaxCalculationOptions): [number, number]{
+export function taxCalculation(options: TaxCalculationOptions): [number, number]{
     
     const {tax, products} = options;
     let total = 0;
@@ -32,16 +32,13 @@ function taxCalculation(options: TaxCalculationOptions): [number, number]{
 }
 
 // Solucion son desestructuracion, dada
-const shoppingCart = [phone, tablet];
-const tax = 0.15;
+// const shoppingCart = [phone, tablet];
+// const tax = 0.15;
 
-const [total, taxTotal] = taxCalculation({
-    products: shoppingCart,
-    tax: tax,
-});
+// const [total, taxTotal] = taxCalculation({
+//     products: shoppingCart,
+//     tax: tax,
+// });
 
-console.log('Total:', total);
-console.log('Tax:', taxTotal);
-
-
-export{};
+// console.log('Total:', total);
+// console.log('Tax:', taxTotal);

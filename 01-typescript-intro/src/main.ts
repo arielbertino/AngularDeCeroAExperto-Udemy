@@ -4,10 +4,11 @@ import './style.css'
 // import './topics/03-functions'
 // import './topics/04-homework-types'
 // import './topics/05-basic-destructuring'
-import './topics/06-function-destructuring'
+// import './topics/06-function-destructuring'
+import './topics/07-import-export'
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML= ` Hola mundo nuevo`;
 
-console.log('hola mundo');
+console.log('Estas en la consola del main');
