@@ -26,7 +26,7 @@ export class Hero{
         //super(realName, 'New York');
         //this.person = new Person(realName);
     }
-}
+};
 
 
 
