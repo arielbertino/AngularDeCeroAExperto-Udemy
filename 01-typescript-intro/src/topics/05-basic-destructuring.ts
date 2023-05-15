@@ -35,9 +35,19 @@ const { song:anothersong,
 // Por el Profe a partir de la desestructuracion previa
 const { author } = details;
 
+// console.log('Song: ', anothersong, '- duration: ', duration);
+// console.log('Duration: ', audioPlayer.songDuration);
+// console.log('Author: ', audioPlayer.details.author);
+// console.log('Author: ', author);
 
-console.log('Song: ', anothersong, '- duration: ', duration);
-console.log('Duration: ', audioPlayer.songDuration);
-console.log('Author: ', author);
+//const dbz: string[] = ['Goku', 'Vegeta', 'Trunks'];
+//desestructuracion del arreglo, no necesariamente tiene que haber un nombre 
+//para acceder a los otros elements de la desestructuracion
+// Valor por defecto por si esas posiocn no esta en el arreglo
+const [, , trunks = 'Not found']: string[] = ['Goku', 'Vegeta', 'Trunks'];
+
+//console.log('Personaje 3:',  dbz[3] || 'Personaje no encontrado');
+console.log('Personaje 3:',  trunks );
+
 
 export{}
