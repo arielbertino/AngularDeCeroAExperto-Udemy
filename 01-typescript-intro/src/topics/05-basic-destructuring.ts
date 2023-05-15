@@ -43,7 +43,7 @@ const { author } = details;
 //const dbz: string[] = ['Goku', 'Vegeta', 'Trunks'];
 //desestructuracion del arreglo, no necesariamente tiene que haber un nombre 
 //para acceder a los otros elements de la desestructuracion
-// Valor por defecto por si esas posiocn no esta en el arreglo
+// Valor por defecto por si esas posiocion no esta en el arreglo
 const [, , trunks = 'Not found']: string[] = ['Goku', 'Vegeta', 'Trunks'];
 
 //console.log('Personaje 3:',  dbz[3] || 'Personaje no encontrado');
