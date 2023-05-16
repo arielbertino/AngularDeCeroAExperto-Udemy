@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public title: string = 'Hola Sistema Solar';
-  public counter:number = 35;
+
 }
