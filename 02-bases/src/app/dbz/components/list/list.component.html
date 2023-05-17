@@ -1,5 +1,28 @@
 <h4>LISTADO</h4>
 <ul class="list-group">
-  <li class="list-group-item">Krilin - 500</li>
-  <li class="list-group-item">Goku - 10,000</li>
+  <li *ngFor="let character of characterList;
+              let index = index;
+              let isFirst = first;
+              let isLast = last
+              let isEven = even;
+              let isOdd = odd;
+              "
+  class="list-group-item d-flex justify-content-between align-items-center"
+  [ngClass]="{
+    'list-group-item-dark': isLast,
+    'list-group-item-primary': isEven
+    }">
+    <div>
+      <span class="text-primary">{{ index + 1 }}. </span>
+      <span>{{ character.name }} - </span>
+      <strong>Power: </strong>
+      <span>{{ character.power }}</span>
+      <!-- Operatoria con otras variables provista pr el ngFor -->
+      <!-- <span *ngIf="isFirst" > Es el primero: {{ isFirst }}</span>
+      <span *ngIf="isLast"> Es el ultimo: {{ isLast }}</span>
+      <span *ngIf="isEven"> Es par: {{ isLast }}</span>
+      <span *ngIf="isOdd"> Es impar: {{ isLast }}</span> -->
+    </div>
+    <button class="btn btn-danger" (click)="deleteCharacterById( character.id )">X</button>
+  </li>
 </ul>
