@@ -1,0 +1,8 @@
+agregar esta configuracion en el archivo package.json
+para generar el despliegue automatico en githubPages
+
+
+    "build:href": "ng build --base-href ./",
+    "delete:docs":"del docs",
+    "copy:dist":"copyfiles dist/bases/* ./docs -f",
+    "build:github":"npm run delete:docs && npm run build:href && npm run copy:dist"
