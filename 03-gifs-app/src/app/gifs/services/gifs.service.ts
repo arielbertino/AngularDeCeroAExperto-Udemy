@@ -20,7 +20,6 @@ export class GifsService {
 
   constructor( private http: HttpClient ) {
     this.loadLocalStorage();
-    console.log('Gifs service ready');
   }
 
 
@@ -85,7 +84,6 @@ export class GifsService {
         this.gifsList = resp.data;
       });
       console.log({ gifs: this.gifsList });
-    //console.log(this.tagsHistory);
   }
 
 }
