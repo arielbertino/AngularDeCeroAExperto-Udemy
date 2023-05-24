@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Country } from '../../interfaces/country';
+import { CountryService } from '../../services/countries.service';
 
 @Component({
   selector: 'app-by-region-page',
@@ -7,5 +9,14 @@ import { Component } from '@angular/core';
   ]
 })
 export class ByRegionPageComponent {
+  public countries : Country[] = [];
 
+  constructor( private countryService: CountryService){}
+
+  public searchByRegion ( region:string ): void{
+      this.countryService.searchRegion( region )
+      .subscribe( countries => {
+         this.countries = countries;
+    })
+  }
 }

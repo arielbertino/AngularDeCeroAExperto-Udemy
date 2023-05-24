@@ -9,12 +9,9 @@ import { Country } from '../../interfaces/country';
   ]
 })
 export class ByCapitalPageComponent {
-
   public countries : Country[] = [];
 
-
   constructor( private countryService: CountryService){}
-
 
   public searchByCapital ( term:string ): void{
     // console.log('Desde ByCapital');
