@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ByCapitalPageComponent } from 'src/app/countries/pages/by-capital-page/by-capital-page.component';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subject, Subscription, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'shared-search-box',
@@ -7,15 +7,33 @@ import { ByCapitalPageComponent } from 'src/app/countries/pages/by-capital-page/
   styles: [
   ]
 })
-export class SearchBoxComponent {
+export class SearchBoxComponent implements OnInit, OnDestroy{
+  private debouncer: Subject<string> = new Subject<string>();
+  private debouncerSuscription?: Subscription;
+  @Input() public placeholder: string = '';
+  @Output() public onValue = new EventEmitter<string>();
+  @Output() public onDebounce = new EventEmitter<string>();
+  @Input() public initialValue: string = '';
 
-  @Input()
-  public placeholder: string = '';
+  ngOnInit(): void {
+    this.debouncerSuscription = this.debouncer
+    .pipe( debounceTime (800))
+    .subscribe( (value) => {
+      this.onDebounce.emit( value );
+    })
+  }
 
-  @Output()
-  public onValue = new EventEmitter<string>();
+  ngOnDestroy(): void {
+    this.debouncerSuscription?.unsubscribe();
+    console.log('Destrido');
+  }
 
   public emitValue( value: string ): void{
     this.onValue.emit( value );
+  }
+
+  public onKeyPress( serchTerm: string ): void {
+    this.debouncer.next(serchTerm)
+    console.log('Log del onKeyPressed', serchTerm);
   }
 }
