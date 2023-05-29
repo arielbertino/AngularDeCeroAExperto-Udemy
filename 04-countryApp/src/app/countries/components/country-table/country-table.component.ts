@@ -10,10 +10,9 @@ import { Country } from '../../interfaces/country.interface';
     }`
   ],
 })
-export class CountryTableComponent {
-  @Input()
-  public countries: Country[] = [];
 
+export class CountryTableComponent {
+  @Input() public countries: Country[] = [];
 }
 
 

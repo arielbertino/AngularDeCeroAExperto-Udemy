@@ -23,7 +23,8 @@ export class CountryService {
     this.cacheStore = JSON.parse (localStorage.getItem('cacheStore')!)
   }
 
-
+  // Variable que sirve de 'cache' para cuando se
+  // cierra la app, manteniedo los valores seleccionados
   public cacheStore: CacheStore = {
     byCapital   : { term: '', countries: [] },
     byCountries:  { term: '', countries: [] },
@@ -34,7 +35,8 @@ export class CountryService {
     return this.http.get<Country[]>( url )
     .pipe(
       catchError ( error => of([]) ),
-      delay( 2000 )
+      // delay( 2000 ) por profe
+      // delay( 300 ) prueba mia, al fin y al cabo lo dejé sin delay
     );
   }
 
@@ -86,7 +88,7 @@ export class CountryService {
     .pipe(
       tap( countries => this.cacheStore.byRegion = { region, countries }),
       tap( () => this.saveToLocalStorage() ),
-    );;
+    );
   }
 
 }

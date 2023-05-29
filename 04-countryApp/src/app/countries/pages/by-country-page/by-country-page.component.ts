@@ -20,7 +20,6 @@ export class ByCountryPageComponent implements OnInit {
     this.initialValue = this.countryService.cacheStore.byCountries.term;
   }
 
-
   public searchByCountry ( term:string ): void{
       this.isLoading = true;
       this.countryService.searchCountry( term )
@@ -29,7 +28,4 @@ export class ByCountryPageComponent implements OnInit {
         this.isLoading = false;
     })
   }
-
-
-
 }

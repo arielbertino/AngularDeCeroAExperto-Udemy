@@ -13,6 +13,7 @@ import { Region } from '../../interfaces/region.type';
 export class ByRegionPageComponent implements OnInit {
   public countries : Country[] = [];
   public regions: Region[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+  // selectedRegion puede no existir ---> se usa el '?'
   public selectedRegion? : Region;
 
   constructor( private countryService: CountryService ){}
@@ -22,12 +23,11 @@ export class ByRegionPageComponent implements OnInit {
     this.selectedRegion = this.countryService.cacheStore.byRegion.region;
   }
 
-
   public searchByRegion ( region: Region ): void{
     this.selectedRegion = region;
     this.countryService.searchRegion( region )
-    .subscribe( countries => {
-      this.countries = countries;
+      .subscribe( countries => {
+        this.countries = countries;
     })
   }
 }

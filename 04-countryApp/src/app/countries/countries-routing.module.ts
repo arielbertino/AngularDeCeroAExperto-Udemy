@@ -6,7 +6,8 @@ import { ByCountryPageComponent } from './pages/by-country-page/by-country-page.
 import { ByRegionPageComponent } from './pages/by-region-page/by-region-page.component';
 import { CountryPageComponent } from './pages/country-page/country-page.component';
 
-
+// Definicion de rutas (router) para tener
+// mas comodidad y orden desde el navegador
 const routes: Routes = [
   {
     path:'by-capital',

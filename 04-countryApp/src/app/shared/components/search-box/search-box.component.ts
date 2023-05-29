@@ -9,6 +9,7 @@ import { Subject, Subscription, debounceTime } from 'rxjs';
 })
 export class SearchBoxComponent implements OnInit, OnDestroy{
   private debouncer: Subject<string> = new Subject<string>();
+  // debouncerSuscription puede no existir ---> se usa el '?'
   private debouncerSuscription?: Subscription;
   @Input() public placeholder: string = '';
   @Output() public onValue = new EventEmitter<string>();
@@ -24,6 +25,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
+    // debouncerSuscription puede no existir ---> se usa el '?'
+    // de existir, ya que es de tipo Suscrption, nos desuscribimos
     this.debouncerSuscription?.unsubscribe();
     console.log('Destrido');
   }

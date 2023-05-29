@@ -11,7 +11,7 @@ import { Country } from '../../interfaces/country.interface';
   ]
 })
 export class CountryPageComponent implements OnInit{
-
+  // country puede no existir ---> se usa el '?'
   public country?: Country;
 
   constructor(
