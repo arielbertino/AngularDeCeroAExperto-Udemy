@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>¿Está seguro de que realmente quiere deshacerse sin piedad de este heroe?</h1>
+<div mat-dialog-content>
+  <p>Este proceso es irreversible, está a punto de eliminar a {{ data.superhero }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No borres nada, mil disculpas</button>
+  <span class="spacer"></span>
+  <button mat-button color="primary" (click)="onConfirm()" cdkFocusInitial>Borralo nomás, no lo quiero</button>
+</div>

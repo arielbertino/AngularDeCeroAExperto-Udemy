@@ -12,6 +12,7 @@ import { LayoutPageComponent } from '../auth/pages/layout-page/layout-page.compo
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { NewPageComponent } from './pages/new-page/new-page.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
     SearchPageComponent,
     // Pipes
     HeroImagePipe,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
