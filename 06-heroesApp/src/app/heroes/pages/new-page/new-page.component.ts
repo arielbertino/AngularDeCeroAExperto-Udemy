@@ -29,7 +29,7 @@ export class NewPageComponent implements OnInit{
   });
 
   public publishers = [
-    { id: 'DC Comics', desc: 'CD - Comics'},
+    { id: 'DC Comics', desc: 'DC - Comics'},
     { id: 'Marvel Comics', desc: 'Marvel - Comics'},
   ];
 
