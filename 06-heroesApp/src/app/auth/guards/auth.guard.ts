@@ -1,8 +1,8 @@
-import { Inject } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, CanMatchFn, Route, RouterStateSnapshot, UrlSegment, Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
-import { AuthService } from '../services/auth.service';
 import { LoginPageComponent } from '../pages/login-page/login-page.component';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 const checkAuthStatus = (): boolean | Observable<boolean> => {
   //se inyectan el AuthService y el Router
@@ -12,7 +12,7 @@ const checkAuthStatus = (): boolean | Observable<boolean> => {
   return authService.checkAuthentication().pipe(
     tap((isAuthenticated) => {
       if (!isAuthenticated) {
-        router.navigate(['/auth/login']);
+        router.navigate(['./auth/login']);
       }
       console.log(isAuthenticated);
 
