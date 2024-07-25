@@ -1,45 +1,65 @@
-import { Inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn, CanMatchFn, Route, RouterStateSnapshot, UrlSegment, Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRouteSnapshot, CanActivate, CanMatch, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable, tap } from 'rxjs';
-import { LoginPageComponent } from '../pages/login-page/login-page.component';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { AuthService } from '../services/auth.service';
 
-const checkAuthStatus = (): boolean | Observable<boolean> => {
-  //se inyectan el AuthService y el Router
-  const authService: AuthService = Inject(AuthService);
-  const router: Router = Inject(Router);
+@Injectable({providedIn: 'root'})
+export class AuthGuard implements CanMatch, CanActivate{
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
-  return authService.checkAuthentication().pipe(
-    tap((isAuthenticated) => {
-      if (!isAuthenticated) {
-        router.navigate(['./auth/login']);
-      }
-      console.log(isAuthenticated);
+  private checkAuthStatus(): boolean | Observable <boolean> {
+    return this.authService.checkAuthentication()
+     .pipe(
+        tap( isAthenticated => {
+          if (! isAthenticated )
+            this.router.navigate(['./auth/login']);
+        }),
+        tap( isAuthenticated => console.log('AuthGuard Authenticated: ', isAuthenticated)),
+     );
 
+  }
 
-    })
-  );
-};
+  canMatch(route: Route, segments: UrlSegment[]): Observable<boolean > | boolean {
+    console.log('AuthGuard CanMatch works');
+    // console.log({ route, segments });
+    return this.checkAuthStatus();
+    // return false;
+  }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    console.log('AuthGuard CanActivate works');
+    // console.log({ route, state });
+    return this.checkAuthStatus();
+    // return true;
+  }
 
-//No hay necesidad de crear una clase, simplemente definiendo una función flecha y exportándola podemos utilizar sus funcionalidades de guard en el app-routing
-export const canActivateGuard: CanActivateFn = (
-  //Hay que tener en cuenta el tipado CanActiveFn
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-) => {
-  console.log('CanActivate');
-  console.log({ route, state });
+}
 
-  return checkAuthStatus();
-};
+// Forma NO deprecada, no dada en el curso
+// const checkAuthStatus = (): boolean | Observable<boolean> => {
+//   const authService: AuthService = Inject(AuthService);
+//   const router: Router = Inject(Router);
+//   return authService.checkAuthentication().pipe(
+//     tap((isAuthenticated) => {
+//       if (!isAuthenticated) {
+//         router.navigate(['./auth/login']);
+//       }
+//     })
+//   );
+// };
 
-export const canMatchGuard: CanMatchFn = (
-  //Tipado CanMatchFN
-  route: Route,
-  segments: UrlSegment[]
-) => {
-  console.log('CanMatch');
-  console.log({ route, segments });
+// export const canActivateGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+//    return checkAuthStatus();
+// };
 
-  return checkAuthStatus();
-};
+// export const canMatchGuard: CanMatchFn = (
+//   route: Route,
+//   segments: UrlSegment[]
+// ) => {
+//   return checkAuthStatus();
+// };
+// fin forma no deprecada

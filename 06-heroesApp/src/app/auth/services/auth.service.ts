@@ -21,7 +21,6 @@ export class AuthService {
   login(email: string, password: string): Observable<User> {
     // Si se hiciera perfilandolo para un backend real
     // http.post('login', {email, password})
-
     return this.http.get<User>(`${ this.baseUrl }/users/1`)
       .pipe(
         tap ( user => this.user = user ),
