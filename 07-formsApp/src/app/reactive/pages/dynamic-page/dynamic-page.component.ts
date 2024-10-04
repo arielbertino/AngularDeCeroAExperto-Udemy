@@ -18,7 +18,7 @@ export class DynamicPageComponent {
   public myForm: FormGroup = this.fb.group({
     name: [ [''], [Validators.required, Validators.minLength(3)] ],
     favoriteGames: this.fb.array([
-      ['Metas Gear', Validators.required],
+      ['Metal Gear', Validators.required],
       ['Death Stranding', Validators.required],
     ]),
   });
